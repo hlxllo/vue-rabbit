@@ -1,8 +1,12 @@
-import './assets/main.css'
+// vue 默认引入的样式，可以去掉
+// import './assets/main.css'
 
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
+
+// 引入初始化样式文件
+import '@/styles/common.scss'
 
 // 测试接口
 import { getCategoryAPI } from '@/apis/testAPI'

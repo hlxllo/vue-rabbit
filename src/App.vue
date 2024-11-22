@@ -1,9 +1,15 @@
 <template><!-- 一级路由出口组件 -->
-<router-view></router-view></template>
+<router-view></router-view>
+<div class="test">test scss</div>
+</template>
 
 <script setup>
 
 
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.test {
+  color: $priceColor;
+}
+</style>
