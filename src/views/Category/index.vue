@@ -3,6 +3,8 @@ import { getCategoryAPI } from '@/apis/category';
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
 import Banner from '@/components/Banner.vue';
+import GoodsItem from '@/components/GoodsItem.vue';
+import { onBeforeRouteUpdate } from 'vue-router';
 
 const route = useRoute()
 const categoryData = ref([])
@@ -11,7 +13,10 @@ const getCategory = async (id) => {
   const res = await getCategoryAPI(id)
   categoryData.value = res.result
 }
+// 挂载时调用一次
 getCategory(route.params.id)
+// 路由更新时调用
+onBeforeRouteUpdate((to) => getCategory(to.params.id))
 </script>
 
 <template>
@@ -26,6 +31,25 @@ getCategory(route.params.id)
     </div>
     <!-- 轮播图 -->
     <Banner :param="param" custom-class="banner" />
+    <div class="sub-list">
+      <h3>全部分类</h3>
+      <ul>
+        <li v-for="i in categoryData.children" :key="i.id">
+          <RouterLink to="/">
+            <img :src="i.picture" />
+            <p>{{ i.name }}</p>
+          </RouterLink>
+        </li>
+      </ul>
+    </div>
+    <div class="ref-goods" v-for="item in categoryData.children" :key="item.id">
+      <div class="head">
+        <h3>- {{ item.name }}-</h3>
+      </div>
+      <div class="body">
+        <GoodsItem v-for="good in item.goods" :good="good" :key="good.id" />
+      </div>
+    </div>
   </div>
 </div>
 </template>
