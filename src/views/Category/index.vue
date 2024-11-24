@@ -2,9 +2,11 @@
 import { getCategoryAPI } from '@/apis/category';
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
+import Banner from '@/components/Banner.vue';
 
 const route = useRoute()
 const categoryData = ref([])
+const param = { distributionSite: '2' }
 const getCategory = async (id) => {
   const res = await getCategoryAPI(id)
   categoryData.value = res.result
@@ -22,6 +24,8 @@ getCategory(route.params.id)
         <el-breadcrumb-item>{{ categoryData.name }}</el-breadcrumb-item>
       </el-breadcrumb>
     </div>
+    <!-- 轮播图 -->
+    <Banner :param="param" custom-class="banner" />
   </div>
 </div>
 </template>
