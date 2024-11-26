@@ -2,6 +2,8 @@
 import { getDetailAPI } from '@/apis/detail';
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
+import Hot from './components/Hot.vue';
+import Detail from '@/components/Detail.vue';
 
 const route = useRoute()
 const detail = ref({})
@@ -32,7 +34,7 @@ getDetail(route.params.id)
         <div class="goods-info">
           <div class="media">
             <!-- 图片预览区 -->
-
+            <Detail :image-list="detail.mainPictures" />
             <!-- 统计数量 -->
             <ul class="goods-sales">
               <li>
@@ -115,7 +117,8 @@ getDetail(route.params.id)
           </div>
           <!-- 24热榜+专题推荐 -->
           <div class="goods-aside">
-
+            <hot type="1" />
+            <hot type="2" />
           </div>
         </div>
       </div>
