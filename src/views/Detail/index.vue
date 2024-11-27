@@ -3,7 +3,8 @@ import { getDetailAPI } from '@/apis/detail';
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
 import Hot from './components/Hot.vue';
-import Detail from '@/components/Detail.vue';
+// import Detail from '@/components/Detail.vue';
+// import XtxSku from '@/components/XtxSku/index.vue'
 
 const route = useRoute()
 const detail = ref({})
@@ -13,6 +14,11 @@ const getDetail = async function (id) {
   detail.value = res.result
 }
 getDetail(route.params.id)
+// 当 sku 规格变动时
+const skuChange = (sku) => {
+  console.log(sku);
+
+}
 </script>
 
 <template>
@@ -83,7 +89,7 @@ getDetail(route.params.id)
               </dl>
             </div>
             <!-- sku组件 -->
-
+            <XtxSku :goods="detail" @change="skuChange" />
             <!-- 数据组件 -->
 
             <!-- 按钮组件 -->

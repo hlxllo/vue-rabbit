@@ -10,6 +10,8 @@ import { lazyPlugin } from './directives/lazyPlugin'
 
 // 引入初始化样式文件
 import '@/styles/common.scss'
+//  引入全局插件
+import { componentsPlugin } from './components'
 // 创建pinia
 const pinia = createPinia()
 
@@ -21,5 +23,7 @@ app.use(router)
 app.use(pinia)
 // 使用插件
 app.use(lazyPlugin)
+// 使用全局插件
+app.use(componentsPlugin)
 // 挂载应用
 app.mount('#app')
